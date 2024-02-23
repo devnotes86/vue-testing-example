@@ -1,8 +1,9 @@
-import { assert, expect, test, it, describe } from 'vitest';
-import {config, mount, shallowMount} from "@vue/test-utils";
+import {expect,  it, describe } from 'vitest';
+//import {config, mount, shallowMount} from "@vue/test-utils";
+import {  shallowMount} from "@vue/test-utils";
 import HelloWorld from "../components/HelloWorld.vue";
 
- import Vuex from "vuex";
+// import Vuex from "vuex";
 
 
 //config.showDeprecationWarnings = false;
