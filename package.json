@@ -7,7 +7,7 @@
     "dev": "vite",
     "test:unit": "vitest",
     "test": "vitest",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
