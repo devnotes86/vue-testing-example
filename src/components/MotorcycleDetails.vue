@@ -1,5 +1,6 @@
 <script>
 
+import {mapGetters} from 'vuex';
 
 export default {
   components: {
@@ -10,51 +11,18 @@ export default {
   },
   data() {
     return {
-
-      selectedMotorcycle: null,
-
-
-      MOTORCYCLES: [
-        {
-          id: 1,
-          make: 'BMW',
-          model: 'S 1000 RR',
-          year: 2023,
-          cc: 999
-        },
-        {
-          id: 2,
-          make: 'Honda',
-          model: 'CB600 Hornet',
-          year: 2008,
-          cc: 599
-        },
-        {
-          id: 3,
-          make: 'Ducati',
-          model: 'Diavel',
-          year: 2024,
-          cc: 1158
-        },
-        {
-          id: 4,
-          make: 'Harley Davidson',
-          model: 'Fat Boy 114',
-          year: 2024,
-          cc: 1868
-        },
-      ]
+      selectedMotorcycle: null
     }
   },
-  methods:{
-
+  methods: {
+  ...mapGetters(['motorcycles' ]),
   },
 
   mounted() {
     console.log('motorcycle id from route: ' + this.$route.params.id);
 
     if (this.$route.params.id !== null && this.$route.params.id !== undefined && this.$route.params.id !== '' ){
-      const item = this.MOTORCYCLES.find(m => m.id === +this.$route.params.id);
+      const item = this.$store.getters['motorcycles'].find(m => m.id === +this.$route.params.id);
       if (item) {
         this.selectedMotorcycle = item;
       }
