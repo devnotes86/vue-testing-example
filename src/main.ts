@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import router from './router';
-import { createStore, Store } from 'vuex';
+import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate'
 
 
@@ -49,8 +49,6 @@ const motorcyclesModule = {
     },
     mutations: {
         setMotorcycle(state: any, payload: any) {
-
-
             // find and remove old motorcycle by id
             const updatedArray = state.motorcycles.filter(item => item.id !== payload.id);
 

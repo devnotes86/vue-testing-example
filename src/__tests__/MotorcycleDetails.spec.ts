@@ -1,5 +1,4 @@
 import {expect,  it, describe } from 'vitest';
-//import {config, mount, shallowMount} from "@vue/test-utils";
 import {  shallowMount } from "@vue/test-utils";
 import MotorcycleDetails from "../components/MotorcycleDetails.vue";
 import mocks from './mocks.ts';
@@ -9,12 +8,11 @@ describe('MotorcyclesDetails.vue', () => {
 
     global: {
       mocks: {
-          $store: mocks.store,
-          $route: mocks.$route
+          $store: mocks.store,  // mocked store
+          $route: mocks.$route  // mocked route with predefined id=2 (Triumph Rocket 3)
       }
     }
   });
-
 
   it("MotorcycleDetails component contains list with 2 motorcycles", () => {
     expect(wrapper.vm.$store.state.motorcycles.length).toBe(2);
@@ -26,7 +24,6 @@ describe('MotorcyclesDetails.vue', () => {
     console.log(wrapper.vm.$route.path);
     expect(wrapper.vm.$route.params.id).toBe(2);
   });
-
 
   it ("MotorcycleDetails component sets selectedMotorcycle as Triumph Rocket 3", () => {
 
@@ -42,8 +39,6 @@ describe('MotorcyclesDetails.vue', () => {
     expect(JSON.stringify(wrapper.vm.$data.selectedMotorcycle)).toBe(serializedTriumph);
   });
 
-
-
   it ("MotorcycleDetails component allows to update userComment for selected motorcycle", () => {
 
      const newComment = 'a beast!';
@@ -57,6 +52,5 @@ describe('MotorcyclesDetails.vue', () => {
 
       expect(motorcycleUpdated.userComment).toBe(newComment);
   });
-
 })
 

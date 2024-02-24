@@ -1,19 +1,16 @@
 import {expect,  it, describe } from 'vitest';
-//import {config, mount, shallowMount} from "@vue/test-utils";
-import {  shallowMount } from "@vue/test-utils";
-import Motorcycles from "../components/Motorcycles.vue";
+import {  shallowMount } from '@vue/test-utils';
+import Motorcycles from '../components/Motorcycles.vue';
 import mocks from './mocks.ts';
-
 describe('Motorcycles.vue', () => {
   const wrapper = shallowMount(Motorcycles, {
 
     global: {
       mocks: {
-          $store: mocks.store,
+          $store: mocks.store, // mocked store
       }
     }
   });
-
 
   it("Motorcycles component contains list with 2 motorcycles", () => {
     expect(wrapper.vm.$store.state.motorcycles.length).toBe(2);
@@ -34,6 +31,5 @@ describe('Motorcycles.vue', () => {
 
     expect(serializedIntruderFromStore).toBe(serializedIntruder);
   });
-
 })
 

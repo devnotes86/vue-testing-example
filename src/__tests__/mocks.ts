@@ -1,12 +1,10 @@
 import Vuex from "vuex";
 
-
 export default class mocks {
     constructor() { }
 
     public static readonly store = new Vuex.Store({
         state: {
-
             motorcycles: [
                 {
                     id: 1,
@@ -24,9 +22,7 @@ export default class mocks {
                     cc: 2458,
                     userComment: null
                 },
-
             ],
-
         },
         actions: {
             updateMotorcycle(context: any, payload: any) {
@@ -47,15 +43,12 @@ export default class mocks {
 
                 // assign new array to state.motorcycles
                 state.motorcycles = updatedArray;
-
             }
         },
         getters: {
-
             motorcycles(state: any) {
                 return state.motorcycles;
             },
-
         },
     });
 
