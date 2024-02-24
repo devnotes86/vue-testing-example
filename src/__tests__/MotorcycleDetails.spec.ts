@@ -3,8 +3,9 @@ import {  shallowMount } from "@vue/test-utils";
 import MotorcycleDetails from "../components/MotorcycleDetails.vue";
 import mocks from './mocks.ts';
 
-describe('MotorcyclesDetails.vue', () => {
+describe('MotorcycleDetails.vue', () => {
   const wrapper = shallowMount(MotorcycleDetails, {
+
 
     global: {
       mocks: {

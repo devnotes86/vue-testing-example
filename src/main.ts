@@ -50,7 +50,7 @@ const motorcyclesModule = {
     mutations: {
         setMotorcycle(state: any, payload: any) {
             // find and remove old motorcycle by id
-            const updatedArray = state.motorcycles.filter(item: any => item.id !== payload.id);
+            const updatedArray = state.motorcycles.filter(item => item.id !== payload.id);
 
             // add updated motorcycle
             updatedArray.push(payload);
