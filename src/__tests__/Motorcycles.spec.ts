@@ -26,7 +26,8 @@ describe('Motorcycles.vue', () => {
       make: 'Suzuki',
       model: 'Intruder',
       year: 2003,
-      cc: 1783
+      cc: 1783,
+      userComment: null
     });
 
     const serializedIntruderFromStore = JSON.stringify(wrapper.vm.$store.state.motorcycles[0]);
