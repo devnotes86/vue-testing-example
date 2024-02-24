@@ -1,9 +1,10 @@
 <script>
 
-import {mapGetters} from 'vuex';
+import {mapGetters, mapActions} from 'vuex';
 
 export default {
   components: {
+
 
   },
   props: {
@@ -11,22 +12,43 @@ export default {
   },
   data() {
     return {
+      currentComment: null,
       selectedMotorcycle: null
     }
   },
+  computed: {
+    ...mapGetters(['motorcycles' ]),
+    allMotorcycles() {
+      return this.$store.getters['motorcycles'];
+    }
+  },
+
+
   methods: {
-  ...mapGetters(['motorcycles' ]),
+    ...mapActions(['updateMotorcycle']),
+    saveComment( ) {
+
+      this.selectedMotorcycle.userComment = this.currentComment;
+      this.updateMotorcycle(this.selectedMotorcycle);
+    },
+    loadMotorcycle() {
+      console.log('motorcycle id from route: ' + this.$route.params.id);
+
+      if (this.$route.params.id !== null && this.$route.params.id !== undefined && this.$route.params.id !== '' ){
+        const item = this.allMotorcycles.find(m => m.id === +this.$route.params.id);
+        if (item) {
+          console.log(item);
+          console.log(item.userComment);
+          this.selectedMotorcycle = item;
+          this.currentComment = item.userComment;
+        }
+      }
+    }
   },
 
   mounted() {
-    console.log('motorcycle id from route: ' + this.$route.params.id);
+    this.loadMotorcycle();
 
-    if (this.$route.params.id !== null && this.$route.params.id !== undefined && this.$route.params.id !== '' ){
-      const item = this.$store.getters['motorcycles'].find(m => m.id === +this.$route.params.id);
-      if (item) {
-        this.selectedMotorcycle = item;
-      }
-    }
   }
 }
 </script>
@@ -48,6 +70,13 @@ export default {
         <li>Year: {{selectedMotorcycle.year}}</li>
         <li>CC: {{selectedMotorcycle.cc}}</li>
       </ul>
+
+      <p>
+        Comment:
+        <input type="text" v-model="currentComment" id="inputComment" />
+
+      </p>
+      <p><button @click="saveComment()">Save comment</button></p>
     </div>
 
     <p>

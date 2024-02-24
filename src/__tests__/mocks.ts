@@ -7,13 +7,48 @@ export default class mocks {
     public static readonly store = new Vuex.Store({
         state: {
 
-            motorcycles: [],
+            motorcycles: [
+                {
+                    id: 1,
+                    make: 'Suzuki',
+                    model: 'Intruder',
+                    year: 2003,
+                    cc: 1783,
+                    userComment: null
+                },
+                {
+                    id: 2,
+                    make: 'Triumph',
+                    model: 'Rocket 3',
+                    year: 2024,
+                    cc: 2458,
+                    userComment: null
+                },
+
+            ],
 
         },
+        actions: {
+            updateMotorcycle(context: any, payload: any) {
+                context.commit('setMotorcycle', payload)
+            }
+        },
         mutations: {
-            // setTestRecipe(state, value) {
-            //   state.testRecipe = value;
-            // },
+            setMotorcycle(state: any, payload: any) {
+
+
+                // find and remove old motorcycle by id
+                const updatedArray = state.motorcycles.filter(item => item.id !== payload.id);
+
+                // add updated motorcycle
+                updatedArray.push(payload);
+
+                console.log(updatedArray);
+
+                // assign new array to state.motorcycles
+                state.motorcycles = updatedArray;
+
+            }
         },
         getters: {
 
@@ -24,6 +59,5 @@ export default class mocks {
         },
     });
 
-    public static readonly $route = { path: '/motorcycles-mock', id: 2 }
-//    public static readonly $el = { querySelectorAll: function(input){return '';} }
+    public static readonly $route = { path: '/motorcycles-mock', params: { id: 2 } }
 }

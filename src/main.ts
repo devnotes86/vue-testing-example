@@ -17,40 +17,56 @@ const motorcyclesModule = {
                     make: 'BMW',
                     model: 'S 1000 RR',
                     year: 2023,
-                    cc: 999
+                    cc: 999,
+                    userComment: "fastest motorcycle"
                 },
                 {
                     id: 2,
                     make: 'Honda',
                     model: 'CB600 Hornet',
                     year: 2008,
-                    cc: 599
+                    cc: 599,
+                    userComment: null
                 },
                 {
                     id: 3,
                     make: 'Ducati',
                     model: 'Diavel',
                     year: 2024,
-                    cc: 1158
+                    cc: 1158,
+                    userComment: null
                 },
                 {
                     id: 4,
                     make: 'Harley Davidson',
                     model: 'Fat Boy 114',
                     year: 2024,
-                    cc: 1868
+                    cc: 1868,
+                    userComment: null
                 },
             ]
         };
     },
     mutations: {
-        setMotorcycles(state: any, payload: any) {
-            state.motorcycles = payload;
+        setMotorcycle(state: any, payload: any) {
+
+
+            // find and remove old motorcycle by id
+            const updatedArray = state.motorcycles.filter(item => item.id !== payload.id);
+
+            // add updated motorcycle
+            updatedArray.push(payload);
+
+            console.log(updatedArray);
+
+            // assign new array to state.motorcycles
+            state.motorcycles = updatedArray;
+
         }
     },
     actions: {
-        updateMotorcycles(context: any, payload: any) {
-            context.commit('setMotorcycles', payload)
+        updateMotorcycle(context: any, payload: any) {
+            context.commit('setMotorcycle', payload)
         }
     },
     getters: {
